@@ -1,8 +1,6 @@
 function App() {
   return (
-    <div className="App">
-
-    </div>
+    <h1>Werlcome to My planner book</h1>
   );
 }
 
