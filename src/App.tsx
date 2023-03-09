@@ -1,6 +1,10 @@
+import ToDo from "./components/ToDo";
+
 function App() {
   return (
-    <h1>Werlcome to My planner book</h1>
+   <>
+    <ToDo/>
+   </>
   );
 }
 
