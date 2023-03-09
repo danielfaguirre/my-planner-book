@@ -1,4 +1,5 @@
 import { ReactNode } from "react"
+import styles from './style.module.css'
 
 export type MainLayoutType ={
   children: ReactNode
@@ -6,7 +7,7 @@ export type MainLayoutType ={
 
 const MainLayout = ({children}: MainLayoutType) => {
   return (
-    <div>{children}</div>
+    <div className={styles.Container}>{children}</div>
   )
 }
 
