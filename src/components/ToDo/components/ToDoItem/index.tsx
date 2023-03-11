@@ -1,7 +1,7 @@
-import { CloseOutlined } from "@ant-design/icons";
-import { Checkbox, Button } from "antd";
-import style from "./style.module.css";
 import { ToDoListItemType } from "../models";
+import style from "./style.module.css";
+import { CloseOutlined } from "@ant-design/icons";
+import { Button, Checkbox, Typography } from "antd";
 
 export type ToDoItemType = {
 	item: ToDoListItemType;
@@ -12,8 +12,13 @@ export type ToDoItemType = {
 const ToDoItem = ({ item, onCheck, onDelete }: ToDoItemType) => {
 	return (
 		<div className={style.toDoItem}>
-			<Checkbox onChange={(e) => onCheck(item, e.target.checked)}>
-				{item.label}
+			<Checkbox
+				checked={item.isCompleted}
+				onChange={(e) => onCheck(item, e.target.checked)}
+			>
+				<Typography.Text delete={item.isCompleted}>
+					{item.label}
+				</Typography.Text>
 			</Checkbox>
 			<Button
 				onClick={() => onDelete(item)}

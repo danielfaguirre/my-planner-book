@@ -1,17 +1,20 @@
-import { ToDoListItemType } from "../models";
 import ToDoItem from "../ToDoItem";
-import { toDosMock } from "./mock";
+import { ToDoListItemType } from "../models";
 import style from "./style.module.css";
 
 export type ToDoListType = {
+	toDos: ToDoListItemType[] | null;
 	onCheck: (item: ToDoListItemType, isChecked: boolean) => void;
 	onDelete: (item: ToDoListItemType) => void;
 };
 
-const ToDoList = ({ onCheck, onDelete }: ToDoListType) => {
+const ToDoList = ({ toDos, onCheck, onDelete }: ToDoListType) => {
+	if (toDos === null) {
+		return <>Loading...</>;
+	}
 	return (
 		<div className={style.cardBody}>
-			{toDosMock.map((item) => (
+			{toDos?.map((item) => (
 				<ToDoItem
 					onCheck={onCheck}
 					onDelete={onDelete}
