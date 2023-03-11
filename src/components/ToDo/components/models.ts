@@ -1,5 +1,6 @@
 export type ToDoListItemType = {
-	id: number;
+	id?: number;
 	label: string;
 	value: string;
+	isCompleted: boolean;
 };
