@@ -8,7 +8,7 @@ const ToDo = () => {
 	const [toDos, setToDos] = useState<ToDoListItemType[] | null>(null);
 	const getTodos = useCallback(async () => {
 		try {
-			const response = await fetch("http://localhost:3000/todos");
+			const response = await fetch("http://localhost:3001/todos");
 			const responseJson = await response.json();
 			setToDos(responseJson);
 		} catch (error) {
@@ -23,7 +23,7 @@ const ToDo = () => {
 			isCompleted: false,
 		};
 		const body = JSON.stringify(data);
-		await fetch("http://localhost:3000/todos", {
+		await fetch("http://localhost:3001/todos", {
 			method: "POST",
 			body,
 			headers: {
@@ -36,7 +36,7 @@ const ToDo = () => {
 	const handleCheck = async (item: ToDoListItemType, isChecked: boolean) => {
 		const body = JSON.stringify({ isCompleted: isChecked });
 
-		await fetch(`http://localhost:3000/todos/${item.id}`, {
+		await fetch(`http://localhost:3001/todos/${item.id}`, {
 			method: "PATCH",
 			body,
 			headers: {
@@ -47,7 +47,7 @@ const ToDo = () => {
 	};
 
 	const handleDelete = async (item: ToDoListItemType) => {
-		await fetch(`http://localhost:3000/todos/${item.id}`, {
+		await fetch(`http://localhost:3001/todos/${item.id}`, {
 			method: "DELETE",
 		});
 		getTodos();
