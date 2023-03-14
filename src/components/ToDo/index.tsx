@@ -1,14 +1,25 @@
+import { DayTimeEnum } from "../DailySchedule/models";
 import NewToDoForm from "./components/NewToDoForm";
 import ToDoList from "./components/ToDoList";
-import { ToDoListItemType } from "./components/models";
+import { ToDoListItemType } from "./models";
+import style from "./style.module.css";
 import { Card } from "antd";
 import { useCallback, useEffect, useState } from "react";
 
-const ToDo = () => {
+export type ToDoType = {
+	title: string;
+	dayTime: DayTimeEnum;
+};
+
+const ToDo = ({ title, dayTime }: ToDoType) => {
 	const [toDos, setToDos] = useState<ToDoListItemType[] | null>(null);
+	const [loading, setLoading] = useState<boolean>(false);
+
 	const getTodos = useCallback(async () => {
 		try {
-			const response = await fetch("http://localhost:3001/todos");
+			const response = await fetch(
+				`http://localhost:3001/todos?dayTime=${dayTime}`,
+			);
 			const responseJson = await response.json();
 			setToDos(responseJson);
 		} catch (error) {
@@ -17,19 +28,22 @@ const ToDo = () => {
 	}, []);
 
 	const handleAddNewToDo = async (toDo: string) => {
+		setLoading(true);
 		const data: ToDoListItemType = {
 			label: toDo,
 			value: "2",
 			isCompleted: false,
+			dayTime,
 		};
 		const body = JSON.stringify(data);
-		await fetch("http://localhost:3001/todos", {
+		const response = await fetch("http://localhost:3001/todos", {
 			method: "POST",
 			body,
 			headers: {
 				"Content-Type": "application/json",
 			},
 		});
+		if (response.status === 201) setLoading(false);
 		getTodos();
 	};
 
@@ -43,6 +57,7 @@ const ToDo = () => {
 				"Content-Type": "application/json",
 			},
 		});
+
 		getTodos();
 	};
 
@@ -58,9 +73,15 @@ const ToDo = () => {
 	}, [getTodos]);
 
 	return (
-		<Card title="To do">
-			<ToDoList toDos={toDos} onCheck={handleCheck} onDelete={handleDelete} />
-			<NewToDoForm onAddNewToDo={handleAddNewToDo} />
+		<Card
+			loading={toDos === null}
+			className={style.cardContainer}
+			title={<span className={style.cardTitle}>{title}</span>}
+		>
+			<>
+				<ToDoList toDos={toDos} onCheck={handleCheck} onDelete={handleDelete} />
+				<NewToDoForm loading={loading} onAddNewToDo={handleAddNewToDo} />
+			</>
 		</Card>
 	);
 };

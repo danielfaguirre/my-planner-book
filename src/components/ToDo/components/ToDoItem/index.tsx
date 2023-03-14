@@ -1,4 +1,4 @@
-import { ToDoListItemType } from "../models";
+import { ToDoListItemType } from "../../models";
 import style from "./style.module.css";
 import { CloseOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Typography } from "antd";

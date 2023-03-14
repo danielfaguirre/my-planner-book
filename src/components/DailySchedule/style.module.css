@@ -1,0 +1,7 @@
+.todaysSchedule {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  gap: 24px;
+  padding-bottom: 12px;
+}
