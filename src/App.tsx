@@ -1,11 +1,8 @@
+import DailySchedule from "./components/DailySchedule/index";
 import ToDo from "./components/ToDo";
 
 function App() {
-	return (
-		<>
-			<ToDo />
-		</>
-	);
+	return <DailySchedule />;
 }
 
 export default App;

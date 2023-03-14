@@ -4,4 +4,7 @@
   align-items: baseline;
   gap: 16px;
   margin-bottom: 16px;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
