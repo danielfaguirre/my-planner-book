@@ -9,3 +9,7 @@
 .toDoItem label {
   max-width: 80%;
 }
+
+.toDoItem label span {
+  line-height: normal;
+}
