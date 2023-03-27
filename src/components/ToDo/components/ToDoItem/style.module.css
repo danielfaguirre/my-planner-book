@@ -5,3 +5,7 @@
   gap: 16px;
   align-items: center;
 }
+
+.toDoItem label {
+  max-width: 80%;
+}
