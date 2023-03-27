@@ -1,52 +1,150 @@
 {
   "todos": [
     {
-      "label": "This is a new task",
+      "label": "Notes with multiple colors",
       "value": "2",
-      "isCompleted": true,
-      "dayTime": 0,
+      "isCompleted": false,
+      "dayTime": 3,
       "id": 1
     },
     {
-      "label": "I need to create a large task in order to have an idea about how many space I spend here",
+      "label": "Notes font size acording to text length",
       "value": "2",
-      "isCompleted": true,
-      "dayTime": 0,
+      "isCompleted": false,
+      "dayTime": 3,
       "id": 2
     },
     {
-      "label": "Now I need to create a new task in order to see the scroll",
+      "label": "Create The Flash Cards Component",
       "value": "2",
       "isCompleted": false,
-      "dayTime": 0,
+      "dayTime": 3,
       "id": 3
     },
     {
-      "label": "Another one",
+      "label": "Try to create new button on hover to note edition",
       "value": "2",
-      "isCompleted": true,
-      "dayTime": 0,
+      "isCompleted": false,
+      "dayTime": 3,
       "id": 4
     },
     {
-      "label": "May it is the last one",
+      "label": "Refactoring fetch data",
       "value": "2",
-      "isCompleted": true,
-      "dayTime": 0,
+      "isCompleted": false,
+      "dayTime": 3,
       "id": 5
     },
     {
-      "label": "Yes it was the last one",
+      "label": "Validation on delete",
+      "value": "2",
+      "isCompleted": false,
+      "dayTime": 3,
+      "id": 6
+    },
+    {
+      "label": "Improve note component view on responsive",
+      "value": "2",
+      "isCompleted": false,
+      "dayTime": 3,
+      "id": 7
+    },
+    {
+      "label": "Create login",
+      "value": "2",
+      "isCompleted": false,
+      "dayTime": 3,
+      "id": 8
+    },
+    {
+      "label": "Dark mode",
+      "value": "2",
+      "isCompleted": false,
+      "dayTime": 3,
+      "id": 9
+    },
+    {
+      "label": "Calendar read only component",
+      "value": "2",
+      "isCompleted": false,
+      "dayTime": 3,
+      "id": 10
+    },
+    {
+      "label": "Select day",
+      "value": "2",
+      "isCompleted": false,
+      "dayTime": 3,
+      "id": 11
+    },
+    {
+      "label": "Mercar",
       "value": "2",
       "isCompleted": true,
-      "dayTime": 0,
-      "id": 6
+      "dayTime": 1,
+      "id": 12
+    },
+    {
+      "label": "Mormir",
+      "value": "2",
+      "isCompleted": true,
+      "dayTime": 1,
+      "id": 13
+    },
+    {
+      "label": "Leer",
+      "value": "2",
+      "isCompleted": true,
+      "dayTime": 1,
+      "id": 14
+    },
+    {
+      "label": "Ir por la bendi",
+      "value": "2",
+      "isCompleted": false,
+      "dayTime": 1,
+      "id": 15
+    },
+    {
+      "label": "Ya",
+      "value": "2",
+      "isCompleted": true,
+      "dayTime": 1,
+      "id": 16
+    },
+    {
+      "label": "Mormir otra vez",
+      "value": "2",
+      "isCompleted": false,
+      "dayTime": 2,
+      "id": 17
+    },
+    {
+      "label": "Cenar",
+      "value": "2",
+      "isCompleted": false,
+      "dayTime": 2,
+      "id": 18
+    },
+    {
+      "label": "Organizar a la Bendi",
+      "value": "2",
+      "isCompleted": false,
+      "dayTime": 2,
+      "id": 19
+    },
+    {
+      "label": "Pedirle a diosito que duerma toda la noche pfabo",
+      "value": "2",
+      "isCompleted": false,
+      "dayTime": 2,
+      "id": 20
     }
   ],
   "notes": [
     {
-      "text": "Teléfono de EPM:\n01800123458",
-      "id": 3
+      "text": "El número de celular de tales: 30003424333",
+      "id": 2
     }
   ]
 }

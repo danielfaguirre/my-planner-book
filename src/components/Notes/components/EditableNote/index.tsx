@@ -20,7 +20,7 @@ const EditableNote = ({ text, setText, onEditNote }: EditableNoteType) => {
 			onBlur={() => onEditNote(text)}
 			onChange={(e) => setText(e.target.value)}
 			className={style.newNote}
-			rows={8}
+			rows={7}
 		/>
 	);
 };

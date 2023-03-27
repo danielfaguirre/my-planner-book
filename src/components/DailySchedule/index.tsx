@@ -5,6 +5,7 @@ import style from "./style.module.css";
 const DailySchedule = () => {
 	return (
 		<section className={style.todaysSchedule}>
+			<ToDo title="Backlog" dayTime={DayTimeEnum.BACKLOG} />
 			<ToDo title="Morning" dayTime={DayTimeEnum.MOORNING} />
 			<ToDo title="Afternoon" dayTime={DayTimeEnum.AFTERNOON} />
 			<ToDo title="Evening" dayTime={DayTimeEnum.EVENING} />
