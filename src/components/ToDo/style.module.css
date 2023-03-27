@@ -1,8 +1,9 @@
 .cardContainer {
-  flex:1;
-  min-width: 340px;
+  width: 310px;
+  margin: auto;
 }
 .cardTitle{
   text-align: center;
+  font-size: 18px;
   display: block;
 }

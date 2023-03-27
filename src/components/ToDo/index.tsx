@@ -3,7 +3,8 @@ import NewToDoForm from "./components/NewToDoForm";
 import ToDoList from "./components/ToDoList";
 import { ToDoListItemType } from "./models";
 import style from "./style.module.css";
-import { Card } from "antd";
+import { getRemainingTasks } from "./utils";
+import { Badge, Card } from "antd";
 import { useCallback, useEffect, useState } from "react";
 
 export type ToDoType = {
@@ -25,7 +26,7 @@ const ToDo = ({ title, dayTime }: ToDoType) => {
 		} catch (error) {
 			console.log(error);
 		}
-	}, []);
+	}, [dayTime]);
 
 	const handleAddNewToDo = async (toDo: string) => {
 		setLoading(true);
@@ -73,16 +74,22 @@ const ToDo = ({ title, dayTime }: ToDoType) => {
 	}, [getTodos]);
 
 	return (
-		<Card
-			loading={toDos === null}
-			className={style.cardContainer}
-			title={<span className={style.cardTitle}>{title}</span>}
-		>
-			<>
-				<ToDoList toDos={toDos} onCheck={handleCheck} onDelete={handleDelete} />
-				<NewToDoForm loading={loading} onAddNewToDo={handleAddNewToDo} />
-			</>
-		</Card>
+		<Badge.Ribbon text={`${getRemainingTasks(toDos || [])} / ${toDos?.length}`}>
+			<Card
+				loading={toDos === null}
+				className={style.cardContainer}
+				title={<span className={style.cardTitle}>{title}</span>}
+			>
+				<>
+					<ToDoList
+						toDos={toDos}
+						onCheck={handleCheck}
+						onDelete={handleDelete}
+					/>
+					<NewToDoForm loading={loading} onAddNewToDo={handleAddNewToDo} />
+				</>
+			</Card>
+		</Badge.Ribbon>
 	);
 };
 

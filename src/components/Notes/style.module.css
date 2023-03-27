@@ -1,0 +1,19 @@
+.noteSection {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  padding: 10px 0px;
+  --note-width: 200px;
+  --note-height: 120px;
+}
+
+.noteSection > div{
+  width: var(--note-width);
+  height: var(--note-height);
+}
+
+.noteSection > .addButton{
+  font-size: 18px;
+  width: var(--note-width);
+  height: var(--note-height);
+}

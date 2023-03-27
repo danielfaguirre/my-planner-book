@@ -8,11 +8,7 @@ const NavBar = () => {
 			items={[
 				{
 					key: 0,
-					label: "Test",
-				},
-				{
-					key: 1,
-					label: "Test 2",
+					label: "My daily planner",
 				},
 			]}
 		/>

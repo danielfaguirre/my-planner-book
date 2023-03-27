@@ -1,0 +1,10 @@
+.closeButton {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 8px;
+}
+
+.closeButton > div {
+  width: 100% !important;
+  height: 100% !important;
+}
