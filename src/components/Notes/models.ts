@@ -1,4 +1,5 @@
 export type NoteType = {
   id?: number
-  text: string
+  text: string,
+  color: string
 }

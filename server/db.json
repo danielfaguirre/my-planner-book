@@ -3,7 +3,7 @@
     {
       "label": "Notes with multiple colors",
       "value": "2",
-      "isCompleted": false,
+      "isCompleted": true,
       "dayTime": 3,
       "id": 1
     },
@@ -76,75 +76,7 @@
       "isCompleted": false,
       "dayTime": 3,
       "id": 11
-    },
-    {
-      "label": "Mercar",
-      "value": "2",
-      "isCompleted": true,
-      "dayTime": 1,
-      "id": 12
-    },
-    {
-      "label": "Mormir",
-      "value": "2",
-      "isCompleted": true,
-      "dayTime": 1,
-      "id": 13
-    },
-    {
-      "label": "Leer",
-      "value": "2",
-      "isCompleted": true,
-      "dayTime": 1,
-      "id": 14
-    },
-    {
-      "label": "Ir por la bendi",
-      "value": "2",
-      "isCompleted": false,
-      "dayTime": 1,
-      "id": 15
-    },
-    {
-      "label": "Ya",
-      "value": "2",
-      "isCompleted": true,
-      "dayTime": 1,
-      "id": 16
-    },
-    {
-      "label": "Mormir otra vez",
-      "value": "2",
-      "isCompleted": false,
-      "dayTime": 2,
-      "id": 17
-    },
-    {
-      "label": "Cenar",
-      "value": "2",
-      "isCompleted": false,
-      "dayTime": 2,
-      "id": 18
-    },
-    {
-      "label": "Organizar a la Bendi",
-      "value": "2",
-      "isCompleted": false,
-      "dayTime": 2,
-      "id": 19
-    },
-    {
-      "label": "Pedirle a diosito que duerma toda la noche pfabo",
-      "value": "2",
-      "isCompleted": false,
-      "dayTime": 2,
-      "id": 20
     }
   ],
-  "notes": [
-    {
-      "text": "El número de celular de tales: 30003424333",
-      "id": 2
-    }
-  ]
+  "notes": []
 }

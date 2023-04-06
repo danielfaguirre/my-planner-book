@@ -1,6 +1,8 @@
 import NoteCard from "./components/NoteCard";
+import { NoteColors } from "./constants";
 import { NoteType } from "./models";
 import style from "./style.module.css";
+import { getRandomNoteColor } from "./utils";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { useCallback, useEffect, useState } from "react";
@@ -24,7 +26,9 @@ const Notes = () => {
 		setLoading(true);
 		const data: NoteType = {
 			text: "",
+			color: getRandomNoteColor(NoteColors),
 		};
+		console.log(data);
 		const body = JSON.stringify(data);
 		const response = await fetch("http://localhost:3001/notes", {
 			method: "POST",
