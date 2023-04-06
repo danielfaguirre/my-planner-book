@@ -20,12 +20,14 @@ const NoteCard = ({ note, onEditNote, onDeleteNote }: NoteCardType) => {
 		<div>
 			{isEditable ? (
 				<EditableNote
+					noteColor={note.color}
 					text={text}
 					setText={setText}
 					onEditNote={handleEditNote}
 				/>
 			) : (
 				<ReadOnlyNote
+					noteColor={note.color}
 					onEdit={() => setIsEditable(true)}
 					onDeleteNote={onDeleteNote}
 					text={text}

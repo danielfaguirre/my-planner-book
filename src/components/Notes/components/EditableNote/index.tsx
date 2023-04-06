@@ -4,16 +4,22 @@ import { useRef } from "react";
 
 export type EditableNoteType = {
 	text: string;
+	noteColor: string;
 	setText: (text: string) => void;
 	onEditNote: (newText: string) => void;
 };
 
-const EditableNote = ({ text, setText, onEditNote }: EditableNoteType) => {
+const EditableNote = ({
+	text,
+	noteColor,
+	setText,
+	onEditNote,
+}: EditableNoteType) => {
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
 	return (
 		<Input.TextArea
-			style={{ backgroundColor: "aqua" }}
+			style={{ backgroundColor: noteColor }}
 			autoFocus
 			ref={textAreaRef}
 			value={text}

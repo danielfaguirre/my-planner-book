@@ -4,11 +4,17 @@ import { useState } from "react";
 
 export type ReadOnlyNoteType = {
 	text: string;
+	noteColor: string;
 	onEdit: () => void;
 	onDeleteNote: () => void;
 };
 
-const ReadOnlyNote = ({ text, onEdit, onDeleteNote }: ReadOnlyNoteType) => {
+const ReadOnlyNote = ({
+	text,
+	noteColor,
+	onEdit,
+	onDeleteNote,
+}: ReadOnlyNoteType) => {
 	const [showCloseButton, setShowCloseButton] = useState(false);
 
 	return (
@@ -16,7 +22,7 @@ const ReadOnlyNote = ({ text, onEdit, onDeleteNote }: ReadOnlyNoteType) => {
 			onMouseEnter={() => setShowCloseButton(true)}
 			onMouseLeave={() => setShowCloseButton(false)}
 			onDoubleClick={onEdit}
-			style={{ backgroundColor: "aqua" }}
+			style={{ backgroundColor: noteColor }}
 			className={style.readOnlyNote}
 		>
 			<BadgeCloseButton onClick={onDeleteNote} showButton={showCloseButton}>
