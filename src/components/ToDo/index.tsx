@@ -1,3 +1,9 @@
+import {
+	addNewToDoService,
+	deleteToDoService,
+	getToDosService,
+} from "../../services/ToDo/toDo.services";
+import { checkToDoService } from "../../services/ToDo/toDo.services";
 import { DayTimeEnum } from "../DailySchedule/models";
 import NewToDoForm from "./components/NewToDoForm";
 import ToDoList from "./components/ToDoList";
@@ -17,55 +23,24 @@ const ToDo = ({ title, dayTime }: ToDoType) => {
 	const [loading, setLoading] = useState<boolean>(false);
 
 	const getTodos = useCallback(async () => {
-		try {
-			const response = await fetch(
-				`http://localhost:3001/todos?dayTime=${dayTime}`,
-			);
-			const responseJson = await response.json();
-			setToDos(responseJson);
-		} catch (error) {
-			console.log(error);
-		}
+		const { data } = await getToDosService(dayTime);
+		setToDos(data);
 	}, [dayTime]);
 
 	const handleAddNewToDo = async (toDo: string) => {
 		setLoading(true);
-		const data: ToDoListItemType = {
-			label: toDo,
-			value: "2",
-			isCompleted: false,
-			dayTime,
-		};
-		const body = JSON.stringify(data);
-		const response = await fetch("http://localhost:3001/todos", {
-			method: "POST",
-			body,
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-		if (response.status === 201) setLoading(false);
+		await addNewToDoService(toDo, dayTime);
+		setLoading(false);
 		getTodos();
 	};
 
 	const handleCheck = async (item: ToDoListItemType, isChecked: boolean) => {
-		const body = JSON.stringify({ isCompleted: isChecked });
-
-		await fetch(`http://localhost:3001/todos/${item.id}`, {
-			method: "PATCH",
-			body,
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-
+		await checkToDoService(item.id as number, isChecked);
 		getTodos();
 	};
 
 	const handleDelete = async (item: ToDoListItemType) => {
-		await fetch(`http://localhost:3001/todos/${item.id}`, {
-			method: "DELETE",
-		});
+		await deleteToDoService(item.id as number);
 		getTodos();
 	};
 
@@ -80,14 +55,8 @@ const ToDo = ({ title, dayTime }: ToDoType) => {
 				className={style.cardContainer}
 				title={<span className={style.cardTitle}>{title}</span>}
 			>
-				<>
-					<ToDoList
-						toDos={toDos}
-						onCheck={handleCheck}
-						onDelete={handleDelete}
-					/>
-					<NewToDoForm loading={loading} onAddNewToDo={handleAddNewToDo} />
-				</>
+				<ToDoList toDos={toDos} onCheck={handleCheck} onDelete={handleDelete} />
+				<NewToDoForm loading={loading} onAddNewToDo={handleAddNewToDo} />
 			</Card>
 		</Badge.Ribbon>
 	);

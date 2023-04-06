@@ -2,77 +2,66 @@
   "todos": [
     {
       "label": "Notes with multiple colors",
-      "value": "2",
       "isCompleted": true,
       "dayTime": 3,
       "id": 1
     },
     {
       "label": "Notes font size acording to text length",
-      "value": "2",
       "isCompleted": false,
       "dayTime": 3,
       "id": 2
     },
     {
       "label": "Create The Flash Cards Component",
-      "value": "2",
       "isCompleted": false,
       "dayTime": 3,
       "id": 3
     },
     {
       "label": "Try to create new button on hover to note edition",
-      "value": "2",
       "isCompleted": false,
       "dayTime": 3,
       "id": 4
     },
     {
       "label": "Refactoring fetch data",
-      "value": "2",
       "isCompleted": false,
       "dayTime": 3,
       "id": 5
     },
     {
       "label": "Validation on delete",
-      "value": "2",
       "isCompleted": false,
       "dayTime": 3,
       "id": 6
     },
     {
       "label": "Improve note component view on responsive",
-      "value": "2",
       "isCompleted": false,
       "dayTime": 3,
       "id": 7
     },
     {
       "label": "Create login",
-      "value": "2",
       "isCompleted": false,
       "dayTime": 3,
       "id": 8
     },
     {
       "label": "Dark mode",
-      "value": "2",
       "isCompleted": false,
       "dayTime": 3,
       "id": 9
     },
     {
       "label": "Calendar read only component",
-      "value": "2",
       "isCompleted": false,
       "dayTime": 3,
       "id": 10
     },
     {
       "label": "Select day",
-      "value": "2",
       "isCompleted": false,
       "dayTime": 3,
       "id": 11

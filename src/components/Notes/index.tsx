@@ -1,8 +1,12 @@
+import {
+	addNewNoteService,
+	deleteNoteService,
+	getNotesService,
+	updateNoteService,
+} from "../../services/Notes/notes.services";
 import NoteCard from "./components/NoteCard";
-import { NoteColors } from "./constants";
 import { NoteType } from "./models";
 import style from "./style.module.css";
-import { getRandomNoteColor } from "./utils";
 import { PlusOutlined } from "@ant-design/icons";
 import { Button } from "antd";
 import { useCallback, useEffect, useState } from "react";
@@ -12,53 +16,26 @@ const Notes = () => {
 	const [loading, setLoading] = useState<boolean>(false);
 
 	const getNotes = useCallback(async () => {
-		try {
-			const response = await fetch("http://localhost:3001/notes");
-			const responseJson = await response.json();
-			setNotes(responseJson);
-		} catch (error) {
-			setNotes([]);
-			console.log(error);
-		}
+		const { data } = await getNotesService();
+		setNotes(data);
 	}, []);
 
 	const handleAddNote = async () => {
 		setLoading(true);
-		const data: NoteType = {
-			text: "",
-			color: getRandomNoteColor(NoteColors),
-		};
-		console.log(data);
-		const body = JSON.stringify(data);
-		const response = await fetch("http://localhost:3001/notes", {
-			method: "POST",
-			body,
-			headers: {
-				"Content-Type": "application/json",
-			},
-		});
-		if (response.status === 201) setLoading(false);
+		await addNewNoteService();
+		setLoading(false);
 		getNotes();
 	};
 
 	const handleEditNote = async (noteId: number, newText: string) => {
 		if (newText) {
-			const body = JSON.stringify({ text: newText });
-			await fetch(`http://localhost:3001/notes/${noteId}`, {
-				method: "PATCH",
-				body,
-				headers: {
-					"Content-Type": "application/json",
-				},
-			});
+			await updateNoteService(newText, noteId);
 			getNotes();
 		}
 	};
 
 	const handleDeleteNote = async (noteId: number) => {
-		await fetch(`http://localhost:3001/notes/${noteId}`, {
-			method: "DELETE",
-		});
+		await deleteNoteService(noteId);
 		getNotes();
 	};
 
