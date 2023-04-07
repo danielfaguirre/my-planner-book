@@ -2,9 +2,19 @@
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  padding: 10px 0px;
+  justify-content: center;
+  align-content: start;
   --note-width: 200px;
   --note-height: 120px;
+}
+
+@media (max-width: 480px) {
+  .noteSection {
+    padding: 10px 0px;
+    flex-wrap: nowrap;
+    justify-content: initial;
+    overflow-x: auto;
+  }
 }
 
 .noteSection > div{

@@ -8,7 +8,7 @@ import NoteCard from "./components/NoteCard";
 import { NoteType } from "./models";
 import style from "./style.module.css";
 import { PlusOutlined } from "@ant-design/icons";
-import { Button } from "antd";
+import { Button, Card } from "antd";
 import { useCallback, useEffect, useState } from "react";
 
 const Notes = () => {

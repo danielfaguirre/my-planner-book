@@ -1,4 +1,12 @@
 .Container {
   margin-top: 8px;
   padding: 10px;
+  display: flex;
+  gap: 24px;
+}
+
+@media (max-width: 480px) {
+  .Container {
+    display: block;
+  }
 }
