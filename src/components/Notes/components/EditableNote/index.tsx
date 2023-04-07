@@ -16,18 +16,24 @@ const EditableNote = ({
 	onEditNote,
 }: EditableNoteType) => {
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
+	const NOTE_MAX_LENGTH = 220;
 	return (
-		<Input.TextArea
-			style={{ backgroundColor: noteColor }}
-			autoFocus
-			ref={textAreaRef}
-			value={text}
-			onBlur={() => onEditNote(text)}
-			onChange={(e) => setText(e.target.value)}
-			className={style.newNote}
-			rows={7}
-		/>
+		<>
+			<Input.TextArea
+				style={{ backgroundColor: noteColor }}
+				autoFocus
+				ref={textAreaRef}
+				value={text}
+				onBlur={() => onEditNote(text)}
+				onChange={(e) => setText(e.target.value)}
+				className={style.newNote}
+				rows={7}
+				maxLength={NOTE_MAX_LENGTH}
+			/>
+			<span className={style.charsCounter}>
+				{text.length} / {NOTE_MAX_LENGTH}
+			</span>
+		</>
 	);
 };
 

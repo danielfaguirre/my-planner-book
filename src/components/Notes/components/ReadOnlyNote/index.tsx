@@ -1,3 +1,4 @@
+import { getNoteFontSize } from "../../utils";
 import BadgeCloseButton from "../BadgeCloseButton";
 import style from "./style.module.css";
 import { useState } from "react";
@@ -26,7 +27,12 @@ const ReadOnlyNote = ({
 			className={style.readOnlyNote}
 		>
 			<BadgeCloseButton onClick={onDeleteNote} showButton={showCloseButton}>
-				<section className={style.noteText}>{text}</section>
+				<section
+					style={{ fontSize: getNoteFontSize(text) }}
+					className={style.noteText}
+				>
+					{text}
+				</section>
 			</BadgeCloseButton>
 		</div>
 	);

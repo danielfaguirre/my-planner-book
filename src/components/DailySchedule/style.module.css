@@ -1,7 +1,10 @@
 .todaysSchedule {
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: auto;
-  gap: 24px;
+  width: 310px;
   padding-bottom: 12px;
+}
+
+@media (max-width: 480px) {
+  .todaysSchedule {
+    margin: auto;
+  }
 }

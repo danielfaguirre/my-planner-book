@@ -4,7 +4,7 @@
   align-items: baseline;
   gap: 8px;
   margin-bottom: 16px;
-  max-height: 200px;
+  max-height: 55vh;
   overflow-y: auto;
   overflow-x: hidden;
 }
