@@ -1,19 +1,18 @@
-import App from "./App";
-import MainLayout from "./layouts/MainLayout";
 import NavBar from "./layouts/NavBar";
 import reportWebVitals from "./reportWebVitals";
+import { router } from "./routes";
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { RouterProvider } from "react-router-dom";
 
 const root = ReactDOM.createRoot(
 	document.getElementById("root") as HTMLElement,
 );
+
 root.render(
 	<React.StrictMode>
 		<NavBar />
-		<MainLayout>
-			<App />
-		</MainLayout>
+		<RouterProvider router={router} />
 	</React.StrictMode>,
 );
 
