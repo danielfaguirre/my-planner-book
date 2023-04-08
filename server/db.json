@@ -20,7 +20,7 @@
     },
     {
       "label": "Validation on delete",
-      "isCompleted": false,
+      "isCompleted": true,
       "dayTime": 3,
       "id": 6
     },
