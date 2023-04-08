@@ -1,12 +1,15 @@
 .Container {
   margin-top: 8px;
   padding: 10px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 24px;
+  max-height: 85vh;
 }
 
 @media (max-width: 480px) {
   .Container {
     display: block;
+    justify-content: unset;
   }
 }

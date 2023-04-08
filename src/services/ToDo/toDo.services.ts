@@ -6,7 +6,7 @@ import * as Service from "../service";
 const ENDPOINT = `${SERVER_ROUTE}/todos`;
 
 export const getToDosService = (dayTime: DayTimeEnum) => {
-	const query = `dayTime=${dayTime}`;
+	const query = `dayTime=${dayTime}&_sort=isCompleted`;
 	return Service.getData<ToDoListItemType[]>(`${ENDPOINT}?${query}`);
 };
 

@@ -11,7 +11,7 @@ export type NoteCardType = {
 
 const NoteCard = ({ note, onEditNote, onDeleteNote }: NoteCardType) => {
 	const [text, setText] = useState(note.text);
-	const [isEditable, setIsEditable] = useState(true);
+	const [isEditable, setIsEditable] = useState(false);
 	const handleEditNote = (newText: string) => {
 		onEditNote(newText);
 		setIsEditable(false);
