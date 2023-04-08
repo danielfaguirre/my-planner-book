@@ -1,6 +1,6 @@
 import style from "./style.module.css";
 import { CloseOutlined } from "@ant-design/icons";
-import { Badge, Button } from "antd";
+import { Badge, Button, Popconfirm } from "antd";
 import { ReactNode } from "react";
 
 export type BadgeCloseButtonType = {
@@ -19,12 +19,15 @@ const BadgeCloseButton = ({
 			className={style.closeButton}
 			count={
 				showButton ? (
-					<Button
-						onClick={onClick}
-						danger
-						type="link"
-						icon={<CloseOutlined />}
-					/>
+					<Popconfirm
+						title="Delete the task"
+						description="Are you sure to delete this task?"
+						onConfirm={onClick}
+						okText="Yes"
+						cancelText="No"
+					>
+						<Button danger type="link" icon={<CloseOutlined />} />
+					</Popconfirm>
 				) : (
 					0
 				)

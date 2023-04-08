@@ -1,7 +1,7 @@
 import { ToDoListItemType } from "../../models";
 import style from "./style.module.css";
 import { CloseOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Typography } from "antd";
+import { Button, Checkbox, Popconfirm, Typography } from "antd";
 
 export type ToDoItemType = {
 	item: ToDoListItemType;
@@ -20,12 +20,15 @@ const ToDoItem = ({ item, onCheck, onDelete }: ToDoItemType) => {
 					{item.label}
 				</Typography.Text>
 			</Checkbox>
-			<Button
-				onClick={() => onDelete(item)}
-				danger
-				type="link"
-				icon={<CloseOutlined />}
-			/>
+			<Popconfirm
+				title="Delete the task"
+				description="Are you sure to delete this task?"
+				onConfirm={() => onDelete(item)}
+				okText="Yes"
+				cancelText="No"
+			>
+				<Button danger type="link" icon={<CloseOutlined />} />
+			</Popconfirm>
 		</div>
 	);
 };

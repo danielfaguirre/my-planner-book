@@ -51,9 +51,9 @@ const ToDo = ({ title, dayTime }: ToDoType) => {
 	return (
 		<Badge.Ribbon text={`${getRemainingTasks(toDos || [])} / ${toDos?.length}`}>
 			<Card
+				title={<span className={style.cardTitle}>{title}</span>}
 				loading={toDos === null}
 				className={style.cardContainer}
-				title={<span className={style.cardTitle}>{title}</span>}
 			>
 				<ToDoList toDos={toDos} onCheck={handleCheck} onDelete={handleDelete} />
 				<NewToDoForm loading={loading} onAddNewToDo={handleAddNewToDo} />

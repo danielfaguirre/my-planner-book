@@ -13,18 +13,6 @@
       "id": 2
     },
     {
-      "label": "Create The Flash Cards Component",
-      "isCompleted": false,
-      "dayTime": 3,
-      "id": 3
-    },
-    {
-      "label": "Try to create new button on hover to note edition",
-      "isCompleted": false,
-      "dayTime": 3,
-      "id": 4
-    },
-    {
       "label": "Refactoring fetch data",
       "isCompleted": true,
       "dayTime": 3,
@@ -38,7 +26,7 @@
     },
     {
       "label": "Improve note component view on responsive",
-      "isCompleted": false,
+      "isCompleted": true,
       "dayTime": 3,
       "id": 7
     },
@@ -73,23 +61,55 @@
       "id": 12
     },
     {
-      "label": "fjadskf ",
+      "label": "Quotes section",
       "isCompleted": false,
       "dayTime": 3,
-      "id": 13
+      "id": 16
     },
     {
-      "label": "jafsdjklfña",
+      "label": "Create simple note or Flash card note",
       "isCompleted": false,
       "dayTime": 3,
-      "id": 14
-    },
-    {
-      "label": "asjdfklñasdf",
-      "isCompleted": false,
-      "dayTime": 3,
-      "id": 15
+      "id": 17
     }
   ],
-  "notes": []
+  "notes": [
+    {
+      "text": "fasjfdsaj",
+      "color": "#CBAACB",
+      "id": 1
+    },
+    {
+      "text": "Llamar a XXXX 302234203",
+      "color": "#FFCCB6",
+      "id": 2
+    },
+    {
+      "text": "205303111 1klñjd ad",
+      "color": "#ABDEE6",
+      "id": 3
+    }
+  ],
+  "flashCards": [
+    {
+      "id": 1,
+      "title": "Hello",
+      "description": "description"
+    },
+    {
+      "id": 2,
+      "title": "Hello 2",
+      "description": "description 2"
+    },
+    {
+      "id": 3,
+      "title": "Hello 3",
+      "description": "description 3"
+    },
+    {
+      "id": 4,
+      "title": "Hello 4",
+      "description": "description 4"
+    }
+  ]
 }
