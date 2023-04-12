@@ -71,45 +71,13 @@
       "isCompleted": false,
       "dayTime": 3,
       "id": 17
+    },
+    {
+      "label": "desayunar siempre se me olvida",
+      "isCompleted": false,
+      "dayTime": 0,
+      "id": 18
     }
   ],
-  "notes": [
-    {
-      "text": "fasjfdsaj",
-      "color": "#CBAACB",
-      "id": 1
-    },
-    {
-      "text": "Llamar a XXXX 302234203",
-      "color": "#FFCCB6",
-      "id": 2
-    },
-    {
-      "text": "205303111 1klñjd ad",
-      "color": "#ABDEE6",
-      "id": 3
-    }
-  ],
-  "flashCards": [
-    {
-      "id": 1,
-      "title": "Hello",
-      "description": "description"
-    },
-    {
-      "id": 2,
-      "title": "Hello 2",
-      "description": "description 2"
-    },
-    {
-      "id": 3,
-      "title": "Hello 3",
-      "description": "description 3"
-    },
-    {
-      "id": 4,
-      "title": "Hello 4",
-      "description": "description 4"
-    }
-  ]
+  "notes": []
 }
