@@ -1,18 +1,30 @@
-import { AuthInfo } from "../../components/Auth/models";
+import { LoginInfo } from "../../components/Auth/models";
 import { auth } from "../../config/firebase";
 import { signUpResponse } from "./signup.service";
-import { UserCredential, signInWithEmailAndPassword } from "firebase/auth";
+import { User, signInWithEmailAndPassword } from "firebase/auth";
 
 export const firebaseLoginUser = async (
-	authInfo: AuthInfo,
+	authInfo: LoginInfo,
 ): Promise<signUpResponse> => {
 	const { email, password } = authInfo;
-	let userCredential: UserCredential | null = null;
+	let user: User | null = null;
 	try {
-		userCredential = await signInWithEmailAndPassword(auth, email, password);
+		await signInWithEmailAndPassword(auth, email, password);
+		user = auth.currentUser;
+
 		// rome-ignore lint/suspicious/noExplicitAny: <explanation>
 	} catch (error: any) {
-		return { userCredential: null, error: error.message };
+		return { user: null, error: error.message };
 	}
-	return { userCredential, error: null };
+	return { user, error: null };
+};
+
+export const firebaseSignoutUser = async (): Promise<signUpResponse> => {
+	try {
+		await auth.signOut();
+		// rome-ignore lint/suspicious/noExplicitAny: <explanation>
+	} catch (error: any) {
+		return { user: null, error: error.message };
+	}
+	return { user: auth.currentUser, error: null };
 };

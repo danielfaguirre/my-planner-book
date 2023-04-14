@@ -1,16 +1,21 @@
-import { AuthInfo } from "../../components/Auth/models";
+import { SignupInfo } from "../../components/Auth/models";
 import { auth } from "../../config/firebase";
-import { UserCredential, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+	User,
+	UserCredential,
+	createUserWithEmailAndPassword,
+	updateProfile,
+} from "firebase/auth";
 
 export type signUpResponse = {
-	userCredential: UserCredential | null;
+	user: User | null;
 	error: string | null;
 };
 
 export const firebaseSignupUser = async (
-	authInfo: AuthInfo,
+	authInfo: SignupInfo,
 ): Promise<signUpResponse> => {
-	const { email, password } = authInfo;
+	const { email, password, name } = authInfo;
 	let userCredential: UserCredential | null = null;
 	try {
 		userCredential = await createUserWithEmailAndPassword(
@@ -18,9 +23,13 @@ export const firebaseSignupUser = async (
 			email,
 			password,
 		);
+		const { user } = userCredential;
+		if (user !== null) {
+			updateProfile(user, { displayName: name });
+		}
 		// rome-ignore lint/suspicious/noExplicitAny: <explanation>
 	} catch (error: any) {
-		return { userCredential: null, error: error.message };
+		return { user: null, error: error.message };
 	}
-	return { userCredential, error: null };
+	return { user: userCredential.user, error: null };
 };

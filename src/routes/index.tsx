@@ -1,18 +1,13 @@
 import LoginPage from "../pages/login";
 import Main from "../pages/main";
 import SignupPage from "../pages/signup";
-import ProtectedRoute from "./ProtectedRoutes";
 import { Routes } from "./constants";
 import { createBrowserRouter } from "react-router-dom";
 
 export const router = createBrowserRouter([
 	{
 		path: Routes.ROOT,
-		element: (
-			<ProtectedRoute user={null}>
-				<Main />
-			</ProtectedRoute>
-		),
+		element: <Main />,
 	},
 	{
 		path: Routes.LOGIN,

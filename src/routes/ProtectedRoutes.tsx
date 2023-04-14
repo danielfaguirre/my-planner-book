@@ -1,8 +1,9 @@
 import { Routes } from "./constants";
+import { User } from "@firebase/auth";
 import { Navigate } from "react-router-dom";
 
 export type ProtectedRoutesType = {
-	user: {} | null;
+	user?: User;
 	children: JSX.Element;
 };
 

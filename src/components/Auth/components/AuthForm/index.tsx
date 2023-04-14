@@ -1,58 +1,65 @@
-import { Routes } from "../../../../routes/constants";
-import { AuthInfo } from "../../models";
+import { LoginInfo, SignupInfo } from "../../models";
+import { authFormConfig } from "./constants";
 import style from "./style.module.css";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { LockOutlined, MailOutlined, UserOutlined } from "@ant-design/icons";
 import { Alert, Button, Form, Input, Typography } from "antd";
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export type AuthFormType = {
 	type: "login" | "signup";
 	isLoading: boolean;
 	errorMessage: string;
-	onSubmit: (authInfo: AuthInfo) => void;
+	authInfo?: SignupInfo | LoginInfo;
+	onInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+	onSubmit: () => void;
 };
 
 const AuthForm = ({
 	isLoading,
 	errorMessage,
 	type,
+	onInputChange,
 	onSubmit,
+	authInfo,
 }: AuthFormType) => {
 	const navigate = useNavigate();
-	const [authInfo, setAuthInfo] = useState<AuthInfo>({
-		email: "",
-		password: "",
-	});
 
-	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const { value, name } = e.target;
-		const newValue = { ...authInfo, [name]: value } as AuthInfo;
-		setAuthInfo(newValue);
-	};
-
-	const formTitle = type === "signup" ? "Sign up" : "Log in";
-	const redirectLabel = type === "signup" ? "Log in" : "Sign up";
-	const redirectRoute = type === "signup" ? Routes.LOGIN : Routes.SIGNUP;
-
+	const { formTitle, redirectLabel, redirectRoute } = authFormConfig[type];
 	return (
 		<Form
-			onFinish={() => onSubmit(authInfo)}
+			onFinish={() => onSubmit()}
 			name={formTitle}
 			className={style.loginForm}
 			initialValues={{ remember: true }}
 		>
 			<Typography.Title>{formTitle}</Typography.Title>
+			{type === "signup" && (
+				<Form.Item
+					name="userName"
+					rules={[
+						{ required: true, message: "Please input your Display name!" },
+					]}
+				>
+					<Input
+						disabled={isLoading}
+						prefix={<UserOutlined />}
+						type="name"
+						placeholder="User name"
+						name="name"
+						onChange={onInputChange}
+					/>
+				</Form.Item>
+			)}
 			<Form.Item
 				name="email"
 				rules={[{ required: true, message: "Please input your Email!" }]}
 			>
 				<Input
 					disabled={isLoading}
-					prefix={<UserOutlined className="site-form-item-icon" />}
+					prefix={<MailOutlined />}
 					placeholder="Email"
 					name="email"
-					onChange={handleChange}
+					onChange={onInputChange}
 				/>
 			</Form.Item>
 			<Form.Item
@@ -61,13 +68,37 @@ const AuthForm = ({
 			>
 				<Input
 					disabled={isLoading}
-					prefix={<LockOutlined className="site-form-item-icon" />}
+					prefix={<LockOutlined />}
 					type="password"
 					placeholder="Password"
 					name="password"
-					onChange={handleChange}
+					onChange={onInputChange}
 				/>
 			</Form.Item>
+			{type === "signup" && (
+				<Form.Item
+					name="confirmPassword"
+					rules={[
+						{
+							required: true,
+							message: "Please confirm your Password!",
+						},
+						{
+							message: "Password and confirm password dones not match",
+							pattern: new RegExp(`^${authInfo?.password}$`, "i"),
+						},
+					]}
+				>
+					<Input
+						disabled={isLoading}
+						prefix={<LockOutlined />}
+						type="password"
+						placeholder="Confirm password"
+						name="confirmPassword"
+						onChange={onInputChange}
+					/>
+				</Form.Item>
+			)}
 			<Form.Item>
 				<Button
 					loading={isLoading}
