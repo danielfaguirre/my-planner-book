@@ -1,3 +1,4 @@
+import AuthProvider from "./contexts/AuthContext";
 import NavBar from "./layouts/NavBar";
 import reportWebVitals from "./reportWebVitals";
 import { router } from "./routes";
@@ -11,8 +12,10 @@ const root = ReactDOM.createRoot(
 
 root.render(
 	<React.StrictMode>
-		<NavBar />
-		<RouterProvider router={router} />
+		<AuthProvider>
+			<NavBar />
+			<RouterProvider router={router} />
+		</AuthProvider>
 	</React.StrictMode>,
 );
 

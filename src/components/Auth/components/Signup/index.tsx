@@ -1,25 +1,34 @@
+import useInputChange from "../../../../hooks/useInputChange";
+import { Routes } from "../../../../routes/constants";
 import { firebaseSignupUser } from "../../../../services/Auth/signup.service";
-import { AuthInfo } from "../../models";
+import { SignupInfo } from "../../models";
 import AuthForm from "../AuthForm";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const Signup = () => {
+	const navigate = useNavigate();
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState("");
+	const [authInfo, handleInputChange] = useInputChange<SignupInfo>({
+		email: "",
+		password: "",
+		name: "",
+		confirmPassword: "",
+	});
 
-	const handleSubmit = async (authInfo: AuthInfo) => {
+	const handleSubmit = async () => {
 		setErrorMessage("");
 		setIsLoading(true);
-		const { userCredential, error } = await firebaseSignupUser(authInfo);
+		const { error } = await firebaseSignupUser(authInfo);
 		if (error) {
 			setErrorMessage(error);
 		} else {
 			/**
 			 * TODO:
-			 * 1. Redirect to login
-			 * 2. User feedback
+			 * 1. User feedback
 			 */
-			console.log(userCredential);
+			navigate(Routes.LOGIN);
 		}
 		setIsLoading(false);
 	};
@@ -29,7 +38,9 @@ const Signup = () => {
 			isLoading={isLoading}
 			errorMessage={errorMessage}
 			onSubmit={handleSubmit}
+			onInputChange={handleInputChange}
 			type="signup"
+			authInfo={authInfo}
 		/>
 	);
 };
