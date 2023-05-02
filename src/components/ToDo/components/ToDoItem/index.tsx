@@ -21,7 +21,7 @@ const ToDoItem = ({ item, onCheck, onDelete }: ToDoItemType) => {
 				</Typography.Text>
 			</Checkbox>
 			<Popconfirm
-				title="Delete the task"
+				title="Delete task"
 				description="Are you sure to delete this task?"
 				onConfirm={() => onDelete(item)}
 				okText="Yes"

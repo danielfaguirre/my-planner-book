@@ -1,9 +1,6 @@
-export type ToDoServiceType<T> = {
-	data: T | null;
-	error?: string;
-};
+import { serviceResponse } from "../models";
 
-export const getData = async <T>(url: string): Promise<ToDoServiceType<T>> => {
+export const getData = async <T>(url: string): Promise<serviceResponse<T>> => {
 	const response = await fetch(url);
 	if (response.status !== 200) {
 		return { data: null, error: response.statusText };
@@ -16,7 +13,7 @@ export const getData = async <T>(url: string): Promise<ToDoServiceType<T>> => {
 export const postData = async <T, U>(
 	url: string,
 	payLoad: U,
-): Promise<ToDoServiceType<T>> => {
+): Promise<serviceResponse<T>> => {
 	const response = await fetch(url, {
 		method: "POST",
 		body: JSON.stringify(payLoad),
@@ -36,7 +33,7 @@ export const patchData = async <T, U>(
 	url: string,
 	payLoad: U,
 	id: number | string,
-): Promise<ToDoServiceType<T>> => {
+): Promise<serviceResponse<T>> => {
 	const response = await fetch(`${url}/${id}`, {
 		method: "PATCH",
 		body: JSON.stringify(payLoad),
@@ -59,5 +56,5 @@ export const deleteData = async (url: string, id: number | string) => {
 	if (response.status !== 200) {
 		return { error: response.statusText };
 	}
-	return {};
+	return { error: "" };
 };

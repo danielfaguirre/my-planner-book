@@ -1,6 +1,6 @@
 import { DayTimeEnum } from "../DailySchedule/models";
 export type ToDoListItemType = {
-	id?: number;
+	id?: number | string;
 	label: string;
 	isCompleted: boolean;
 	dayTime: DayTimeEnum;

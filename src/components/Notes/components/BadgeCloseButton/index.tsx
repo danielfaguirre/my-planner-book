@@ -20,8 +20,8 @@ const BadgeCloseButton = ({
 			count={
 				showButton ? (
 					<Popconfirm
-						title="Delete the task"
-						description="Are you sure to delete this task?"
+						title="Delete note"
+						description="Are you sure to delete this note?"
 						onConfirm={onClick}
 						okText="Yes"
 						cancelText="No"
