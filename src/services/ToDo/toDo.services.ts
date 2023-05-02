@@ -1,30 +1,21 @@
 import { DayTimeEnum } from "../../components/DailySchedule/models";
-import { ToDoListItemType } from "../../components/ToDo/models";
-import { SERVER_ROUTE } from "../../config";
-import * as Service from "../service";
+import { CollectionsEnum } from "../APIProviders/models";
+import { getProvider } from "../APIProviders/utils";
+import IToDos from "./impl/interfaces";
 
-const ENDPOINT = `${SERVER_ROUTE}/todos`;
+const provider = getProvider(CollectionsEnum.TODOS) as IToDos;
 
 export const getToDosService = (dayTime: DayTimeEnum) => {
-	const query = `dayTime=${dayTime}&_sort=isCompleted`;
-	return Service.getData<ToDoListItemType[]>(`${ENDPOINT}?${query}`);
+	return provider.getToDos(dayTime);
 };
 
-export const addNewToDoService = (toDo: string, dayTime: DayTimeEnum) => {
-	const payLoad: ToDoListItemType = {
-		label: toDo,
-		isCompleted: false,
-		dayTime,
-	};
-	return Service.postData(ENDPOINT, payLoad);
+export const addNewToDoService = (label: string, dayTime: DayTimeEnum) => {
+	return provider.addNewToDo(label, dayTime);
 };
 
 export const checkToDoService = (toDoId: number, isChecked: boolean) => {
-	const payLoad = {
-		isCompleted: isChecked,
-	};
-	return Service.patchData(ENDPOINT, payLoad, toDoId);
+	return provider.checkToDo({ isChecked }, toDoId);
 };
 
 export const deleteToDoService = (toDoId: number) =>
-	Service.deleteData(ENDPOINT, toDoId);
+	provider.deleteToDo(toDoId);

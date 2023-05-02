@@ -16,7 +16,7 @@ const EditableNote = ({
 	onEditNote,
 }: EditableNoteType) => {
 	const textAreaRef = useRef<HTMLTextAreaElement>(null);
-	const NOTE_MAX_LENGTH = 220;
+	const NOTE_MAX_LENGTH = 210;
 	return (
 		<>
 			<Input.TextArea

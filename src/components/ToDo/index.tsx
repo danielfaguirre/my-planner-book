@@ -1,9 +1,9 @@
 import {
 	addNewToDoService,
+	checkToDoService,
 	deleteToDoService,
 	getToDosService,
 } from "../../services/ToDo/toDo.services";
-import { checkToDoService } from "../../services/ToDo/toDo.services";
 import { DayTimeEnum } from "../DailySchedule/models";
 import NewToDoForm from "./components/NewToDoForm";
 import ToDoList from "./components/ToDoList";
