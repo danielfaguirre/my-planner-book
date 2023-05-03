@@ -16,13 +16,13 @@ import {
 
 export const getData = async (
 	collectionName: CollectionsEnum,
-	filter?: QueryFieldFilterConstraint,
+	filters?: QueryFieldFilterConstraint[],
 ): Promise<FirebaseResponseType> => {
 	let data: FirebaseResponseItemType[] = [];
 
-	const q = !filter
+	const q = !filters
 		? collection(db, collectionName)
-		: query(collection(db, collectionName), filter);
+		: query(collection(db, collectionName), ...filters);
 
 	try {
 		const querySnapshot = await getDocs(q);

@@ -1,3 +1,4 @@
+import { useAuthContext } from "../../contexts/AuthContext";
 import {
 	addNewNoteService,
 	deleteNoteService,
@@ -12,17 +13,18 @@ import { Button } from "antd";
 import { useCallback, useEffect, useState } from "react";
 
 const Notes = () => {
+	const { userId } = useAuthContext()
 	const [notes, setNotes] = useState<NoteType[] | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
 
 	const getNotes = useCallback(async () => {
-		const { data } = await getNotesService();
+		const { data } = await getNotesService(userId);
 		setNotes(data);
-	}, []);
+	}, [userId]);
 
 	const handleAddNote = async () => {
 		setLoading(true);
-		await addNewNoteService();
+		await addNewNoteService(userId);
 		setLoading(false);
 		getNotes();
 	};
@@ -47,6 +49,7 @@ const Notes = () => {
 		<section className={style.noteSection}>
 			{notes?.map((note) => (
 				<NoteCard
+					key={note.id}
 					onDeleteNote={() => handleDeleteNote(note.id as number)}
 					onEditNote={(newText) => handleEditNote(note.id as number, newText)}
 					note={note}

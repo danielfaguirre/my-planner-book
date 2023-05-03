@@ -1,3 +1,4 @@
+import { useAuthContext } from "../../contexts/AuthContext";
 import {
 	addNewToDoService,
 	checkToDoService,
@@ -19,17 +20,18 @@ export type ToDoType = {
 };
 
 const ToDo = ({ title, dayTime }: ToDoType) => {
+	const { userId } = useAuthContext()
 	const [toDos, setToDos] = useState<ToDoListItemType[] | null>(null);
 	const [loading, setLoading] = useState<boolean>(false);
 
 	const getTodos = useCallback(async () => {
-		const { data } = await getToDosService(dayTime);
+		const { data } = await getToDosService(userId, dayTime);
 		setToDos(data);
-	}, [dayTime]);
+	}, [dayTime, userId]);
 
 	const handleAddNewToDo = async (toDo: string) => {
 		setLoading(true);
-		await addNewToDoService(toDo, dayTime);
+		await addNewToDoService(userId, toDo, dayTime);
 		setLoading(false);
 		getTodos();
 	};
@@ -49,7 +51,7 @@ const ToDo = ({ title, dayTime }: ToDoType) => {
 	}, [getTodos]);
 
 	return (
-		<Badge.Ribbon text={`${getRemainingTasks(toDos || [])} / ${toDos?.length}`}>
+		<Badge.Ribbon text={`${getRemainingTasks(toDos)} / ${toDos?.length || 0}`}>
 			<Card
 				title={<span className={style.cardTitle}>{title}</span>}
 				loading={toDos === null}

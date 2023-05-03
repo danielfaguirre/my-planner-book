@@ -9,7 +9,7 @@ import {
 import { Menu } from "antd";
 
 const NavBar = () => {
-	const { user, setUser } = useAuthContext();
+	const { user, setUserInfo } = useAuthContext();
 	const mainLabel = user
 		? `Hello ${user?.displayName}`
 		: "Welcome to My planner book";
@@ -23,7 +23,7 @@ const NavBar = () => {
 			 * Error notification
 			 */
 		} else {
-			setUser(undefined);
+			setUserInfo(undefined);
 		}
 	};
 

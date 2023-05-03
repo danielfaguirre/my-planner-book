@@ -1,7 +1,8 @@
 import { AuthContextType } from "../models";
 import { User } from "@firebase/auth";
 
-import { auth } from "../../config/firebase";
+import storage from "../../config/storage";
+import { StorageEnum } from "../../config/storage/models";
 import {
 	ReactNode,
 	createContext,
@@ -14,17 +15,27 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 const AuthProvider = ({ children }: { children: ReactNode }) => {
 	const [user, setUser] = useState<User | undefined>();
+	const [userId, setUserId] = useState<string>("");
+
+	const setUserInfo = (userInfo?: User) => {
+		if (userInfo) {
+			setUserId(userInfo.uid)
+			storage.set(StorageEnum.USER, userInfo)
+		} else {
+			storage.remove(StorageEnum.USER)
+		}
+		setUser(userInfo)
+	}
 
 	useEffect(() => {
-		const unsubscribe = auth.onAuthStateChanged((user) => {
-			if (user) setUser(user);
-		});
-
-		return unsubscribe;
-	}, []);
+		const storagedUser = storage.get<User>(StorageEnum.USER)
+		if (!user && storagedUser) {
+			setUser(storagedUser)
+		}
+	}, [user]);
 
 	return (
-		<AuthContext.Provider value={{ user, setUser }}>
+		<AuthContext.Provider value={{ user, userId, setUserInfo, setUserId }}>
 			{children}
 		</AuthContext.Provider>
 	);

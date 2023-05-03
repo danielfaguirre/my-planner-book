@@ -10,6 +10,7 @@ const ENDPOINT = `${SERVER_ROUTE}/${CollectionsEnum.TODOS}`;
 
 export default class ToDosJsonServerImpl implements IToDos {
 	getToDos = (
+		userId: string,
 		dayTime: DayTimeEnum,
 	): Promise<serviceResponse<ToDoListItemType[]>> => {
 		const query = `dayTime=${dayTime}&_sort=isCompleted`;
@@ -17,10 +18,12 @@ export default class ToDosJsonServerImpl implements IToDos {
 	};
 
 	addNewToDo = (
+		userId: string,
 		label: string,
 		dayTime: DayTimeEnum,
 	): Promise<serviceResponse<ToDoListItemType>> => {
-		const payLoad: ToDoListItemType = {
+		const payLoad = {
+			userId,
 			label,
 			isCompleted: false,
 			dayTime,

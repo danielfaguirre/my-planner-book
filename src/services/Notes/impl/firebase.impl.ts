@@ -3,12 +3,14 @@ import * as Service from "../../APIProviders/firebaseService";
 import { CollectionsEnum } from "../../APIProviders/models";
 import { serviceResponse } from "../../models";
 import INotes from "./interfaces";
+import { where } from "firebase/firestore";
 
 const collectionName = CollectionsEnum.NOTES;
 
 export default class NotesFirebaseImpl implements INotes {
-	getNotes = async (): Promise<serviceResponse<NoteType[]>> => {
-		const firebaseResponse = await Service.getData(collectionName);
+	getNotes = async (userId: string): Promise<serviceResponse<NoteType[]>> => {
+		const filters = [where("userId", "==", userId)];
+		const firebaseResponse = await Service.getData(collectionName, filters);
 		const adapter = firebaseResponse?.data?.map((item) => {
 			return {
 				id: item.document.id,
@@ -22,8 +24,12 @@ export default class NotesFirebaseImpl implements INotes {
 		};
 	};
 
-	addNewNote = async (note: NoteType): Promise<serviceResponse<NoteType>> => {
-		const firebaseResponse = await Service.postData(collectionName, note);
+	addNewNote = async (
+		userId: string,
+		note: NoteType,
+	): Promise<serviceResponse<NoteType>> => {
+		const payLoad = { ...note, userId };
+		const firebaseResponse = await Service.postData(collectionName, payLoad);
 		return {
 			data: null,
 			error: firebaseResponse.error,

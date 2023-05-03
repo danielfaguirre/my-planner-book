@@ -4,9 +4,11 @@ import { serviceResponse } from "../../models";
 
 export default interface IToDos {
 	getToDos: (
+		userId: string,
 		dayTime: DayTimeEnum,
 	) => Promise<serviceResponse<ToDoListItemType[]>>;
 	addNewToDo: (
+		userId: string,
 		label: string,
 		dayTime: DayTimeEnum,
 	) => Promise<serviceResponse<ToDoListItemType>>;

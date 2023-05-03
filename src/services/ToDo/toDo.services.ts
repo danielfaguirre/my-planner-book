@@ -5,12 +5,16 @@ import IToDos from "./impl/interfaces";
 
 const provider = getProvider(CollectionsEnum.TODOS) as IToDos;
 
-export const getToDosService = (dayTime: DayTimeEnum) => {
-	return provider.getToDos(dayTime);
+export const getToDosService = (userId: string, dayTime: DayTimeEnum) => {
+	return provider.getToDos(userId, dayTime);
 };
 
-export const addNewToDoService = (label: string, dayTime: DayTimeEnum) => {
-	return provider.addNewToDo(label, dayTime);
+export const addNewToDoService = (
+	userId: string,
+	label: string,
+	dayTime: DayTimeEnum,
+) => {
+	return provider.addNewToDo(userId, label, dayTime);
 };
 
 export const checkToDoService = (toDoId: number, isChecked: boolean) => {
