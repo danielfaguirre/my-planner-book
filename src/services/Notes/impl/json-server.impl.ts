@@ -8,12 +8,16 @@ import INotes from "./interfaces";
 const ENDPOINT = `${SERVER_ROUTE}/${CollectionsEnum.NOTES}`;
 
 export default class NotesJsonServerImpl implements INotes {
-	getNotes = (): Promise<serviceResponse<NoteType[]>> => {
+	getNotes = (userId: string): Promise<serviceResponse<NoteType[]>> => {
 		return Service.getData<NoteType[]>(`${ENDPOINT}`);
 	};
 
-	addNewNote = (note: NoteType): Promise<serviceResponse<NoteType>> => {
-		return Service.postData<NoteType, NoteType>(ENDPOINT, note);
+	addNewNote = (
+		userId: string,
+		note: NoteType,
+	): Promise<serviceResponse<NoteType>> => {
+		const payLoad = { ...note, userId };
+		return Service.postData<NoteType, NoteType>(ENDPOINT, payLoad);
 	};
 
 	updateNote = (

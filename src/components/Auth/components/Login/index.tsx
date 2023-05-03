@@ -10,7 +10,7 @@ import { useNavigate } from "react-router";
 
 const Login = () => {
 	const navigate = useNavigate();
-	const { setUser, user } = useAuthContext();
+	const { user, setUserInfo, setUserId } = useAuthContext();
 	const [isLoading, setIsLoading] = useState(false);
 	const [errorMessage, setErrorMessage] = useState("");
 	const [authInfo, handleInputChange] = useInputChange<LoginInfo>({
@@ -25,7 +25,8 @@ const Login = () => {
 		if (error) {
 			setErrorMessage(error);
 		} else {
-			setUser(user as User);
+			setUserInfo(user as User);
+			setUserId(user?.uid as string)
 		}
 		setIsLoading(false);
 	};

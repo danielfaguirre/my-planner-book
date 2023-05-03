@@ -7,16 +7,16 @@ import INotes from "./impl/interfaces";
 
 const provider = getProvider(CollectionsEnum.NOTES) as INotes;
 
-export const getNotesService = () => {
-	return provider.getNotes();
+export const getNotesService = (userId: string) => {
+	return provider.getNotes(userId);
 };
 
-export const addNewNoteService = () => {
+export const addNewNoteService = (userId: string) => {
 	const note: NoteType = {
 		text: "",
 		color: getRandomNoteColor(NoteColors),
 	};
-	return provider.addNewNote(note);
+	return provider.addNewNote(userId, note);
 };
 
 export const updateNoteService = (text: string, noteId: number) => {

@@ -6,5 +6,7 @@ export type UserAditionalType = {
 
 export type AuthContextType = {
 	user?: User & UserAditionalType;
-	setUser: React.Dispatch<React.SetStateAction<User | undefined>>;
+	userId: string;
+	setUserInfo: (user?: User) => void;
+	setUserId: React.Dispatch<React.SetStateAction<string>>;
 };

@@ -10,11 +10,15 @@ const collectionName = CollectionsEnum.TODOS;
 
 export default class ToDosFirebaseImpl implements IToDos {
 	getToDos = async (
+		userId: string,
 		dayTime: DayTimeEnum,
 	): Promise<serviceResponse<ToDoListItemType[]>> => {
-		const filter = where("dayTime", "==", dayTime);
+		const filters = [
+			where("dayTime", "==", dayTime),
+			where("userId", "==", userId),
+		];
+		const firebaseResponse = await Service.getData(collectionName, filters);
 
-		const firebaseResponse = await Service.getData(collectionName, filter);
 		const adapter = firebaseResponse?.data?.map((item) => {
 			return {
 				id: item.document.id,
@@ -31,10 +35,12 @@ export default class ToDosFirebaseImpl implements IToDos {
 	};
 
 	addNewToDo = async (
+		userId: string,
 		label: string,
 		dayTime: DayTimeEnum,
 	): Promise<serviceResponse<ToDoListItemType>> => {
-		const payLoad: ToDoListItemType = {
+		const payLoad = {
+			userId,
 			label,
 			isCompleted: false,
 			dayTime,
