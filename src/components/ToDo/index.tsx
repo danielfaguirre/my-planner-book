@@ -37,12 +37,16 @@ const ToDo = ({ title, dayTime }: ToDoType) => {
 	};
 
 	const handleCheck = async (item: ToDoListItemType, isChecked: boolean) => {
+		setLoading(true);
 		await checkToDoService(item.id as number, isChecked);
+		setLoading(false);
 		getTodos();
 	};
 
 	const handleDelete = async (item: ToDoListItemType) => {
+		setLoading(true);
 		await deleteToDoService(item.id as number);
+		setLoading(false);
 		getTodos();
 	};
 
@@ -57,7 +61,7 @@ const ToDo = ({ title, dayTime }: ToDoType) => {
 				loading={toDos === null}
 				className={style.cardContainer}
 			>
-				<ToDoList toDos={toDos} onCheck={handleCheck} onDelete={handleDelete} />
+				<ToDoList loading={loading} toDos={toDos} onCheck={handleCheck} onDelete={handleDelete} />
 				<NewToDoForm loading={loading} onAddNewToDo={handleAddNewToDo} />
 			</Card>
 		</Badge.Ribbon>

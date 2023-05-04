@@ -82,11 +82,7 @@ const AuthForm = ({
 						{
 							required: true,
 							message: "Please confirm your Password!",
-						},
-						{
-							message: "Password and confirm password dones not match",
-							pattern: new RegExp(`^${authInfo?.password}$`, "i"),
-						},
+						}
 					]}
 				>
 					<Input

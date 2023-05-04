@@ -13,7 +13,7 @@ export default interface IToDos {
 		dayTime: DayTimeEnum,
 	) => Promise<serviceResponse<ToDoListItemType>>;
 	checkToDo: (
-		isChecked: { isChecked: boolean },
+		isChecked: boolean,
 		toDoId: string | number,
 	) => Promise<serviceResponse<ToDoListItemType>>;
 	deleteToDo: (toDoId: string | number) => Promise<{ error: string }>;

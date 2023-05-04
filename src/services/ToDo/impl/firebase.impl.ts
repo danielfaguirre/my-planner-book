@@ -53,7 +53,7 @@ export default class ToDosFirebaseImpl implements IToDos {
 	};
 
 	checkToDo = async (
-		isChecked: { isChecked: boolean },
+		isChecked: boolean,
 		toDoId: string | number,
 	): Promise<serviceResponse<ToDoListItemType>> => {
 		const payLoad = {

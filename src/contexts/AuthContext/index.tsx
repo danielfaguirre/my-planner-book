@@ -31,6 +31,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
 		const storagedUser = storage.get<User>(StorageEnum.USER)
 		if (!user && storagedUser) {
 			setUser(storagedUser)
+			setUserId(storagedUser.uid)
 		}
 	}, [user]);
 
