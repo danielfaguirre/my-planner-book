@@ -3,6 +3,7 @@ import { Routes } from "../../../../routes/constants";
 import { firebaseSignupUser } from "../../../../services/Auth/signup.service";
 import { SignupInfo } from "../../models";
 import AuthForm from "../AuthForm";
+import { validateConfirmPassword } from "./utils";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
@@ -20,16 +21,15 @@ const Signup = () => {
 	const handleSubmit = async () => {
 		setErrorMessage("");
 		setIsLoading(true);
-		const { error } = await firebaseSignupUser(authInfo);
-		if (error) {
-			setErrorMessage(error);
+		const confirmPasswordErrorMessage = validateConfirmPassword(authInfo.password, authInfo.confirmPassword)
+		if (confirmPasswordErrorMessage === "") {
+			const { error } = await firebaseSignupUser(authInfo);
+			if (error) setErrorMessage(error);
+			else navigate(Routes.LOGIN);
 		} else {
-			/**
-			 * TODO:
-			 * 1. User feedback
-			 */
-			navigate(Routes.LOGIN);
+			setErrorMessage(confirmPasswordErrorMessage)
 		}
+
 		setIsLoading(false);
 	};
 

@@ -32,7 +32,7 @@ export default class ToDosJsonServerImpl implements IToDos {
 	};
 
 	checkToDo = (
-		isChecked: { isChecked: boolean },
+		isChecked: boolean,
 		toDoId: string | number,
 	): Promise<serviceResponse<ToDoListItemType>> => {
 		const payLoad = {

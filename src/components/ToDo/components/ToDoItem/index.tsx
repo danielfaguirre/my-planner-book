@@ -4,15 +4,17 @@ import { CloseOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Popconfirm, Typography } from "antd";
 
 export type ToDoItemType = {
+	loading: boolean;
 	item: ToDoListItemType;
 	onCheck: (item: ToDoListItemType, isChecked: boolean) => void;
 	onDelete: (item: ToDoListItemType) => void;
 };
 
-const ToDoItem = ({ item, onCheck, onDelete }: ToDoItemType) => {
+const ToDoItem = ({ loading, item, onCheck, onDelete }: ToDoItemType) => {
 	return (
 		<div className={style.toDoItem}>
 			<Checkbox
+				disabled={loading}
 				checked={item.isCompleted}
 				onChange={(e) => onCheck(item, e.target.checked)}
 			>
@@ -27,7 +29,7 @@ const ToDoItem = ({ item, onCheck, onDelete }: ToDoItemType) => {
 				okText="Yes"
 				cancelText="No"
 			>
-				<Button danger type="link" icon={<CloseOutlined />} />
+				<Button disabled={loading} danger type="link" icon={<CloseOutlined />} />
 			</Popconfirm>
 		</div>
 	);

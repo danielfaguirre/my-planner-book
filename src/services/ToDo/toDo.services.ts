@@ -18,7 +18,7 @@ export const addNewToDoService = (
 };
 
 export const checkToDoService = (toDoId: number, isChecked: boolean) => {
-	return provider.checkToDo({ isChecked }, toDoId);
+	return provider.checkToDo(isChecked, toDoId);
 };
 
 export const deleteToDoService = (toDoId: number) =>
